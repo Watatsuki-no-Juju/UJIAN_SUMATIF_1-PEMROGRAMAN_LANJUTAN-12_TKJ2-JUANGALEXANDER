@@ -1,140 +1,18 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-<title>Daftar Siswa</title>
-  <style>
-    /* Layout utama */
-    .layout {
-      width: 90%;
-      max-width: 800px;
-      margin: 30px auto;
-      padding: 20px;
-      border: 2px solid #ccc;
-      border-radius: 10px;
-    }
+@extends('components.app')
 
-    /* Baris siswa (grid sederhana) */
-    .siswa-container {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 20px;
-      justify-content: space-between;
-    }
-
-    /* Kartu siswa */
-    .siswa-card {
-      width: 45%;
-      border: 1px solid #ccc;
-      border-radius: 10px;
-      padding: 15px;
-      box-sizing: border-box;
-    }
-
-    /* Avatar lingkaran */
-    .avatar {
-      width: 50px;
-      height: 50px;
-      background-color: #ddd;
-      border-radius: 50%;
-      display: inline-block;
-      vertical-align: middle;
-    }
-
-    /* Info siswa */
-    .siswa-info {
-      display: inline-block;
-      margin-left: 10px;
-      vertical-align: middle;
-    }
-
-    .siswa-info h4 {
-      margin: 0;
-      font-size: 16px;
-    }
-
-    .siswa-info p {
-      margin: 2px 0;
-      font-size: 13px;
-      color: gray;
-    }
-
-    /* Deskripsi */
-    .deskripsi {
-      margin-top: 10px;
-      font-size: 14px;
-    }
-  </style>
-</head>
-<body>
-
-  <div class="layout">
-    <h2>Daftar Siswa</h2>
-
-    <div class="siswa-container">
-
-      <!-- Siswa 1 -->
-      <div class="siswa-card">
-        <div class="siswa-header">
-          <span class="avatar"></span>
-          <div class="siswa-info">
-            <h4>Nama Siswa 1</h4>
-            <p>@username_siswa</p>
-          </div>
+@section('content')
+<div class="container mx-auto py-8">
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        @foreach($students as $student)
+        <div class="bg-white rounded-lg shadow-md p-6 flex flex-col items-center">
+            <img src="{{ $student['foto'] }}" alt="{{ $student['nama'] }}" class="w-32 h-32 rounded-full mb-4">
+            <h2 class="text-xl font-bold mb-2">{{ $student['nama'] }}</h2>
+            <p class="text-gray-600 mb-1">Kelas: {{ $student['kelas'] }}</p>
+            <p class="text-gray-600 mb-1">Hobi: {{ $student['hobi'] }}</p>
+            <p class="text-gray-600 mb-2">{{ $student['deskripsi'] }}</p>
+            <a href="{{ url('/students/'.$student['id']) }}" class="mt-2 px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600">Detail</a>
         </div>
-        <div class="deskripsi">
-          Deskripsi singkat siswa
-        </div>
-      </div>
-
-      <!-- Siswa 2 -->
-      <div class="siswa-card">
-        <div class="siswa-header">
-          <span class="avatar"></span>
-          <div class="siswa-info">
-            <h4>Nama Siswa 2</h4>
-            <p>@username_siswa</p>
-          </div>
-        </div>
-        <div class="deskripsi">
-          Deskripsi singkat siswa
-        </div>
-      </div>
-
-      <!-- Siswa 3 -->
-      <div class="siswa-card">
-        <div class="siswa-header">
-          <span class="avatar"></span>
-          <div class="siswa-info">
-            <h4>Nama Siswa 3</h4>
-            <p>@username_siswa</p>
-          </div>
-        </div>
-        <div class="deskripsi">
-          Deskripsi singkat siswa
-        </div>
-      </div>
-
-      <!-- Siswa 4 -->
-      <div class="siswa-card">
-        <div class="siswa-header">
-          <span class="avatar"></span>
-          <div class="siswa-info">
-            <h4>Nama Siswa 4</h4>
-            <p>@username_siswa</p>
-          </div>
-        </div>
-        <div class="deskripsi">
-          Deskripsi singkat siswa
-        </div>
-      </div>
-
+        @endforeach
     </div>
-  </div>
 </div>
-</body>
-</html>
+@endsection
