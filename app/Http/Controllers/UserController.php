@@ -48,6 +48,6 @@ $students = [
             ]
         ];
 
-        return view('users.index', compact('students'));
+        return view('students.index', compact('students'));
     }
 }

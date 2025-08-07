@@ -20,3 +20,7 @@ Route::get('/', function () {
 Route::name('users.')->prefix('users')->group(function(){
 Route::get('/', [UserController::class, 'index'])->name('index');
 });
+
+Route::name('users.')->prefix('users')->group(function(){
+Route::get('/students/{}', [UserController::class, 'index'])->name('index');
+});
