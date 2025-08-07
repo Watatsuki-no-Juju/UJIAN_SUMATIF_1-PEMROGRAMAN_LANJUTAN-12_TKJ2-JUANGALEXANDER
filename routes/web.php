@@ -17,10 +17,10 @@ Route::get('/', function () {
     return view('welcome');
 });
     
-Route::name('users.')->prefix('users')->group(function(){
+Route::name('students.')->prefix('students')->group(function(){
 Route::get('/', [UserController::class, 'index'])->name('index');
 });
 
-Route::name('users.')->prefix('users')->group(function(){
-Route::get('/students/{}', [UserController::class, 'index'])->name('index');
+Route::name('students.')->prefix('students')->group(function(){
+Route::get('/students/{id}', [UserController::class, 'index'])->name('index');
 });
